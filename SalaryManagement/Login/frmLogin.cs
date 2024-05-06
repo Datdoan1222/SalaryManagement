@@ -23,7 +23,7 @@ namespace SalaryManagement.Login
             frmMainForm frm = new frmMainForm();
             frm.Show();
             this.Hide();
-            //string connString = "";
+            string connString = "";
             //SqlConnection connect = null;
             //try
             //{
