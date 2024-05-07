@@ -79,6 +79,18 @@
     <Compile Include="QLKhauTru_PhuCap\ucQLKhauTru_PhuCap.Designer.cs">
       <DependentUpon>ucQLKhauTru_PhuCap.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLNhanVien_PhongBan\AddNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLNhanVien_PhongBan\AddNhanVien.Designer.cs">
+      <DependentUpon>AddNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLNhanVien_PhongBan\AddPhongBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLNhanVien_PhongBan\AddPhongBan.Designer.cs">
+      <DependentUpon>AddPhongBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="QLNhanVien_PhongBan\ucQLNhanVien_PhongBan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,6 +125,15 @@
     <EmbeddedResource Include="QLKhauTru_PhuCap\ucQLKhauTru_PhuCap.resx">
       <DependentUpon>ucQLKhauTru_PhuCap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QLNhanVien_PhongBan\AddNhanVien.resx">
+      <DependentUpon>AddNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLNhanVien_PhongBan\AddPhongBan.resx">
+      <DependentUpon>AddPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLNhanVien_PhongBan\ucQLNhanVien_PhongBan.resx">
+      <DependentUpon>ucQLNhanVien_PhongBan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QLQuyTrinhDuyetLuong\ucQTDLuongThang.resx">
       <DependentUpon>ucQTDLuongThang.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +164,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ThongKe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
+      <Project>{561cde45-2bbc-42d8-b075-3b1a075c98ca}</Project>
+      <Name>BusinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{f35eb9aa-0f01-4237-8160-9e7f91e71c35}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
