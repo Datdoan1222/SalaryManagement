@@ -122,6 +122,9 @@
     <EmbeddedResource Include="QLBaoCao_ThongKe\ucBaoCao_ThongKe.resx">
       <DependentUpon>ucBaoCao_ThongKe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QLCaiDatLuong\ucCaiDatLuong.resx">
+      <DependentUpon>ucCaiDatLuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QLKhauTru_PhuCap\ucQLKhauTru_PhuCap.resx">
       <DependentUpon>ucQLKhauTru_PhuCap.cs</DependentUpon>
     </EmbeddedResource>

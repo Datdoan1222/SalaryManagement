@@ -29,8 +29,16 @@ namespace SalaryManagement.QLCaiDatLuong
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ucCaiDatLuong
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "ucCaiDatLuong";
+            this.Size = new System.Drawing.Size(922, 436);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
