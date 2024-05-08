@@ -14,7 +14,7 @@ namespace SalaryManagement
         [STAThread]
         static void Main()
         {
-            // hello nhanvien vvvvvvvv
+            // hello nhanvien dsfsdfsd
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
