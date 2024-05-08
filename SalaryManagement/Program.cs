@@ -14,7 +14,7 @@ namespace SalaryManagement
         [STAThread]
         static void Main()
         {
-            //hello anhdat
+            // hello
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
