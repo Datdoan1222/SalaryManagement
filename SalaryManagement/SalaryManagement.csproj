@@ -73,6 +73,12 @@
     <Compile Include="QLCaiDatLuong\ucCaiDatLuong.Designer.cs">
       <DependentUpon>ucCaiDatLuong.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLChamCong\ucChamCong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QLChamCong\ucChamCong.Designer.cs">
+      <DependentUpon>ucChamCong.cs</DependentUpon>
+    </Compile>
     <Compile Include="QLKhauTru_PhuCap\ucQLKhauTru_PhuCap.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </Compile>
     <EmbeddedResource Include="QLBaoCao_ThongKe\ucBaoCao_ThongKe.resx">
       <DependentUpon>ucBaoCao_ThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLChamCong\ucChamCong.resx">
+      <DependentUpon>ucChamCong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QLKhauTru_PhuCap\ucQLKhauTru_PhuCap.resx">
       <DependentUpon>ucQLKhauTru_PhuCap.cs</DependentUpon>

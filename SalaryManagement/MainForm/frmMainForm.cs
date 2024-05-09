@@ -12,6 +12,7 @@ using SalaryManagement.QLQuyTrinhDuyetLuong;
 using SalaryManagement.QLNhanVien_PhongBan;
 using SalaryManagement.QLCaiDatLuong;
 using SalaryManagement.QLBaoCao_ThongKe;
+using SalaryManagement.QLChamCong;
 namespace SalaryManagement.MainForm
 {
     public partial class frmMainForm : Form
@@ -19,11 +20,13 @@ namespace SalaryManagement.MainForm
         public frmMainForm()
         {
             InitializeComponent();
+            pnChamCong();
             this.Text = "Nguoi dung: " + ClsCHHeThong.TenDangNhap + " dang nhap luc: " + DateTime.Now.ToString("hh:mm:ss dd.MM.yyyy");
         }
         public frmMainForm(string TenDangNhap)
         {
             InitializeComponent();
+            pnChamCong();
             this.Text = "Nguoi dung: " + TenDangNhap + " dang nhap luc: " + DateTime.Now.ToString("hh:mm:ss dd.MM.yyyy");
         }
         private void frmMainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -115,6 +118,29 @@ namespace SalaryManagement.MainForm
             {
                 ucBCTK.BringToFront();
             }
+        }
+
+        private ucChamCong ucCC;
+        private void pnChamCong()
+        {
+            if (pnMain.Controls.Contains(ucCC) == false)
+            {
+                ucCC = new ucChamCong();
+                ucCC.Dock = DockStyle.Fill;
+                pnMain.Controls.Add(ucCC);
+                ucCC.BringToFront();
+
+            }else
+            {
+                ucCC.BringToFront();
+            }
+        }
+
+        
+
+        private void btnChamCong_Click(object sender, EventArgs e)
+        {
+            pnChamCong();
         }
     }
 }
