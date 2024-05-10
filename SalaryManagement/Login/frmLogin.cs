@@ -20,49 +20,47 @@ namespace SalaryManagement.Login
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmMainForm frm = new frmMainForm();
-            frm.Show();
-            this.Hide();
-            string connString = "";
-            //SqlConnection connect = null;
-            //try
-            //{
-            //    //ket noi csdl
-            //    connect = new SqlConnection(connString);
-            //    connect.Open();
-            //    //Xử lý truy van
-            //    #region Xu ly du lieu
-            //    string sql = "select tendaydu from TaiKhoan where TenDangNhap like '" + txbTenDN.Text + "' and MatKhau like '" + txbPassWord.Text + "'";
-            //    SqlCommand command = new SqlCommand();
-            //    command.Connection = connect;
-            //    command.CommandText = sql;
-            //    command.CommandType = CommandType.Text;
-            //    object data = command.ExecuteScalar();
+            
+            string connString = "Data Source=.;Initial Catalog=QLTL;Integrated Security=True";
+            SqlConnection connect = null;
+            try
+            {
+                //ket noi csdl
+                connect = new SqlConnection(connString);
+                connect.Open();
+                //Xử lý truy van
+                #region Xu ly du lieu
+                string sql = "select TenDangNhap from TaiKhoan where TenDangNhap like '" + txbTenDN.Text + "' and MatKhau like '" + txbPassWord.Text + "'";
+                SqlCommand command = new SqlCommand();
+                command.Connection = connect;
+                command.CommandText = sql;
+                command.CommandType = CommandType.Text;
+                object data = command.ExecuteScalar();
 
-            //    if (data == null)
-            //    {
-            //        MessageBox.Show("Loi tai khoan, dang nhap khong thanh cong");
+                if (data == null)
+                {
+                    MessageBox.Show("Loi tai khoan, dang nhap khong thanh cong");
 
-            //    }
-            //    else
-            //    {
-            //        //MessageBox.Show("Dan nhap thanh cong, ten nguoi dang la: "+data.ToString());
-            //        ClsCHHeThong.TenDangNhap = txbTenDN.Text;
-            //        ClsCHHeThong.TenDayDu = data.ToString();
-            //        frmMainForm frm = new frmMainForm(data.ToString());
-            //        frm.Show();
-            //        this.Hide();
-            //    }
-            //    #endregion
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Ket noi lôi: " + ex.Message);
-            //}
-            //finally
-            //{
-            //    connect.Close();
-            //}
+                }
+                else
+                {
+                    //MessageBox.Show("Dan nhap thanh cong, ten nguoi dang la: "+data.ToString());
+                    ClsCHHeThong.TenDangNhap = txbTenDN.Text;
+                    ClsCHHeThong.TenDayDu = data.ToString();
+                    frmMainForm frm = new frmMainForm(data.ToString());
+                    frm.Show();
+                    this.Hide();
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ket noi lôi: " + ex.Message);
+            }
+            finally
+            {
+                connect.Close();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
