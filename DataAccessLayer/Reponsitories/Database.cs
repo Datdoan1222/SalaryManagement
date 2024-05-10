@@ -12,12 +12,12 @@ namespace DataAccessLayer.Reponsitories
     {
         private SqlConnection connect = null;
         private SqlCommand command = null;
-        private string connString = "";
+        private string connString = "Data Source=.;Initial Catalog=QLTL;Integrated Security=True";
         public Database()
         {
             try
             {
-                connString = "Data Source=.;Initial Catalog=Learning_QLBH;Integrated Security=True";
+                connString = "Data Source=.;Initial Catalog=QLTL;Integrated Security=True";
                 connect = new SqlConnection(connString);
                 command = new SqlCommand();
                 command.Connection = connect;

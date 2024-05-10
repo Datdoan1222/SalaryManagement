@@ -130,13 +130,14 @@ namespace SalaryManagement.MainForm
                 pnMain.Controls.Add(ucCC);
                 ucCC.BringToFront();
 
-            }else
+            }
+            else
             {
                 ucCC.BringToFront();
             }
         }
 
-        
+
 
         private void btnChamCong_Click(object sender, EventArgs e)
         {

@@ -16,7 +16,7 @@ namespace DataAccessLayer.Reponsitories
         {
             try
             {
-                string sql = " select MaPhongBan, TenPhongBan from PhongBan";
+                string sql = " select * from ChamCong";
 
                 return DB.GetDataFromDB(sql, CommandType.Text, ref error);
             }

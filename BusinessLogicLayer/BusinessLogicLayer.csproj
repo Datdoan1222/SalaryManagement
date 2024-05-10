@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\ChamCongManager.cs" />
     <Compile Include="Manager\NhanVien_PhongBanManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
