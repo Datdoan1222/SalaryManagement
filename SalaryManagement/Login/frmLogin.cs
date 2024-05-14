@@ -20,48 +20,62 @@ namespace SalaryManagement.Login
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
             string connString = "Data Source=.;Initial Catalog=QLTL;Integrated Security=True";
-            SqlConnection connect = null;
+
             try
             {
-                //ket noi csdl
-                connect = new SqlConnection(connString);
-                connect.Open();
-                //Xử lý truy van
-                #region Xu ly du lieu
-                string sql = "select TenDangNhap from TaiKhoan where TenDangNhap like '" + txbTenDN.Text + "' and MatKhau like '" + txbPassWord.Text + "'";
-                SqlCommand command = new SqlCommand();
-                command.Connection = connect;
-                command.CommandText = sql;
-                command.CommandType = CommandType.Text;
-                object data = command.ExecuteScalar();
+                string sql = @"SELECT TaiKhoan.MaTaiKhoan, TaiKhoan.TenDangNhap, PhongBan.TenPhongBan, ChucVu.TenChucVu, NhanVien.HoTen
+                               FROM TaiKhoan
+                               JOIN NhanVien ON TaiKhoan.MaTaiKhoan = NhanVien.MaTaiKhoan
+                               JOIN PhongBan ON NhanVien.MaPhongBan = PhongBan.MaPhongBan
+                               JOIN ChucVu ON NhanVien.MaChucVu = ChucVu.MaChucVu
+                               WHERE TaiKhoan.TenDangNhap = @Username AND TaiKhoan.MatKhau = @Password";
 
-                if (data == null)
+                using (SqlConnection connect = new SqlConnection(connString))
                 {
-                    MessageBox.Show("Loi tai khoan, dang nhap khong thanh cong");
+                    connect.Open();
 
+                    using (SqlCommand command = new SqlCommand(sql, connect))
+                    {
+                        command.Parameters.AddWithValue("@Username", txbTenDN.Text);
+                        command.Parameters.AddWithValue("@Password", txbPassWord.Text);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("MaTaiKhoan"));
+                                string tenDangNhap = reader.GetString(reader.GetOrdinal("TenDangNhap"));
+                                string tenPhongBan = reader.GetString(reader.GetOrdinal("TenPhongBan"));
+                                string tenChucVu = reader.GetString(reader.GetOrdinal("TenChucVu"));
+                                string tenDayDu = reader.GetString(reader.GetOrdinal("HoTen"));
+
+
+                                ClsCHHeThong.ID = id;
+                                ClsCHHeThong.TenDangNhap = tenDangNhap;
+                                ClsCHHeThong.PhongBan = tenPhongBan;
+                                ClsCHHeThong.ChucVu = tenChucVu;
+                                ClsCHHeThong.TenDayDu = tenDayDu;
+
+                                frmMainForm frm = new frmMainForm(tenDangNhap);
+                                frm.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng.", "Đăng nhập không thành công", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    //MessageBox.Show("Dan nhap thanh cong, ten nguoi dang la: "+data.ToString());
-                    ClsCHHeThong.TenDangNhap = txbTenDN.Text;
-                    ClsCHHeThong.TenDayDu = data.ToString();
-                    frmMainForm frm = new frmMainForm(data.ToString());
-                    frm.Show();
-                    this.Hide();
-                }
-                #endregion
+
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Ket noi lôi: " + ex.Message);
-            }
-            finally
-            {
-                connect.Close();
+                MessageBox.Show("Lỗi kết nối: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

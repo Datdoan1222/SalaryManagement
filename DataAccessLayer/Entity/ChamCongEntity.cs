@@ -10,7 +10,7 @@ namespace DataAccessLayer.Entity
     {
         public string MaChamCong { get; set; }
         public string MaNhanVien { get; set; }
-        public string GioBatDau { get; set; }
-        public string GioKetThuc { get; set; }
+        public string TrangThai { get; set; }
+        public DateTime ThoiGian { get; set; }
     }
 }

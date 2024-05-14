@@ -28,5 +28,23 @@ namespace DataAccessLayer.Reponsitories
                 return null;
             }
         }
+        public bool ChamCong(ChamCongEntity Entity, ref string error)
+        {
+
+            try
+            {
+                string sql = " insert into ChamCong(MaNhanVien,TrangThai,ThoiGian) " +
+                             " values(@MaNhanVien,  @TrangThai, @ThoiGian)";
+                var rs = DB.ProcessData(sql, CommandType.Text, ref error, new SqlParameter("@MaNhanVien", Entity.MaNhanVien),
+                                                       new SqlParameter("@TrangThai", Entity.TrangThai),
+                                                       new SqlParameter("@ThoiGian", Entity.ThoiGian));
+                return rs;
+            }
+            catch (Exception ex)
+            {
+                error = "Ket noi lôi: " + ex.Message;
+                return false;
+            }
+        }
     }
 }

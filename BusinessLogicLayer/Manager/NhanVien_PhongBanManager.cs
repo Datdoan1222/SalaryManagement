@@ -12,6 +12,7 @@ namespace BusinessLogicLayer.Manager
     public class NhanVien_PhongBanManager
     {
         private NhanVien_PhongBanReponsitories process;
+        private PhongBanReponsitories PBprocess;
 
         public NhanVien_PhongBanManager()
         {
@@ -23,6 +24,7 @@ namespace BusinessLogicLayer.Manager
         {
             return process.LayDuLieuDSPhongBan(ref error);
         }
+      
 
         // LayDuLieuDSNV theo Phòng ban
 

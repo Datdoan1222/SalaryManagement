@@ -46,6 +46,7 @@
     <Compile Include="Reponsitories\ChamCongReponsitories.cs" />
     <Compile Include="Reponsitories\Database.cs" />
     <Compile Include="Reponsitories\NhanVien_PhongBanReponsitories.cs" />
+    <Compile Include="Reponsitories\PhongBanReponsitories.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

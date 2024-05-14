@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.Reponsitories;
+using DataAccessLayer.Entity;
 using System.Data;
 
 namespace BusinessLogicLayer.Manager
@@ -19,6 +20,20 @@ namespace BusinessLogicLayer.Manager
         public DataTable LayDuLieuDSChamCong(ref string error)
         {
             return process.LayDuLieuDSChamCong(ref error);
+        }
+        public bool ChamCong(ChamCongEntity Entity, ref string error)
+        {
+            if (string.IsNullOrEmpty(Entity.MaNhanVien) == true)
+            {
+                error = "Bạn Chưa Đăng Nhập";
+                return false;
+            }
+            if (string.IsNullOrEmpty(Entity.TrangThai) == true)
+            {
+                error = "Phai nhap Trang Thai";
+                return false;
+            }
+            return process.ChamCong(Entity, ref error);
         }
     }
 }

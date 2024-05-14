@@ -10,5 +10,9 @@ namespace SalaryManagement
     {
         public static string TenDangNhap;
         public static string TenDayDu;
+        public static int ID;
+        public static string PhongBan;
+        public static string ChucVu;
+
     }
 }
