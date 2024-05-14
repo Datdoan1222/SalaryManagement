@@ -40,11 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\ChamCongEntity.cs" />
+    <Compile Include="Entity\KhauTru_TroCapEntity.cs" />
     <Compile Include="Entity\NhanVienEntity.cs" />
     <Compile Include="Entity\PhongBanEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reponsitories\ChamCongReponsitories.cs" />
     <Compile Include="Reponsitories\Database.cs" />
+    <Compile Include="Reponsitories\KhauTru_TroCapReponsitories.cs" />
     <Compile Include="Reponsitories\NhanVien_PhongBanReponsitories.cs" />
   </ItemGroup>
   <ItemGroup />

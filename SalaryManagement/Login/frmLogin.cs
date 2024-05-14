@@ -21,7 +21,7 @@ namespace SalaryManagement.Login
         private void btnLogin_Click(object sender, EventArgs e)
         {
             
-            string connString = "Data Source=.;Initial Catalog=QLTL;Integrated Security=True";
+            string connString = "Data Source=LAPTOP-N2V2U1E2\\SQLEXPRESS;Initial Catalog=QLTienLuong;Integrated Security=True;Encrypt=False";
             SqlConnection connect = null;
             try
             {

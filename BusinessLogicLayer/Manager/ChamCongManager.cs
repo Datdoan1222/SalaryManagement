@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.Reponsitories;
 using System.Data;
+using DataAccessLayer.Entity;
 
 namespace BusinessLogicLayer.Manager
 {
