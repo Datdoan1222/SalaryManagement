@@ -16,7 +16,7 @@ namespace DataAccessLayer.Reponsitories
         {
             try
             {
-                string sql = " select * from ChamCong";
+                string sql = " select MaPhongBan, TenPhongBan from PhongBan";
 
                 return DB.GetDataFromDB(sql, CommandType.Text, ref error);
             }
@@ -30,7 +30,8 @@ namespace DataAccessLayer.Reponsitories
         {
             try
             {
-                string sql = " select MaNhanVien, TenNhanVien from NhanVien";
+                string sql = @"select MaNhanVien, HoTen, PhongBan.TenPhongBan from NhanVien
+                                INNER JOIN PhongBan ON NhanVien.MaPhongBan = PhongBan.MaPhongBan";
 
                 return DB.GetDataFromDB(sql, CommandType.Text, ref error);
             }
