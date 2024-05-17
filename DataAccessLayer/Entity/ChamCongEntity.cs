@@ -11,6 +11,7 @@ namespace DataAccessLayer.Entity
         public string MaChamCong { get; set; }
         public string MaNhanVien { get; set; }
         public string TrangThai { get; set; }
-        public DateTime ThoiGian { get; set; }
+        public DateTime CheckIn { get; set; }
+        public DateTime CheckOut { get; set; }
     }
 }

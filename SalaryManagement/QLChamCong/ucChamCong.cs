@@ -18,7 +18,7 @@ namespace SalaryManagement.QLChamCong
         private ChamCongManager CCManager = null;
         private DataTable DSChamCong = null;
         private string error = "";
-        private string manhanvien = "";
+        private string manhanvien = ClsCHHeThong.TenDayDu;
         private string machamcong = "";
         private ChamCongEntity DSCCDuocChon = new ChamCongEntity();
         private DateTime currentDate = DateTime.Now;
@@ -26,7 +26,7 @@ namespace SalaryManagement.QLChamCong
         {
             InitializeComponent();
             CCManager = new ChamCongManager();
-            LayDuLieuDSChamCong();
+            LayDuLieuDSChamCong(manhanvien);
             getDatetime();
 
         }
@@ -37,11 +37,11 @@ namespace SalaryManagement.QLChamCong
                 ("Ngày {0}, Tháng {1}, Năm {2}", currentDate.Day, currentDate.Month, currentDate.Year);
             lblDate.Text = formattedDate;
         }
-        private void LayDuLieuDSChamCong()
+        private void LayDuLieuDSChamCong(string manhanvien)
         {
             try
             {
-                var data = CCManager.LayDuLieuDSChamCong(ref error);
+                var data = CCManager.LayDuLieuDSChamCong(manhanvien,ref error);
                 if (data == null)
                 {
                     MessageBox.Show(error);
@@ -64,17 +64,19 @@ namespace SalaryManagement.QLChamCong
         {
             DSCCDuocChon.MaNhanVien = ClsCHHeThong.ID.ToString();
             DSCCDuocChon.TrangThai = cbxTrangThai.Text;
-            DSCCDuocChon.ThoiGian = currentDate;
+            DSCCDuocChon.CheckIn = currentDate;
+            DSCCDuocChon.CheckOut = currentDate;
             bool ketqua = CCManager.ChamCong(DSCCDuocChon, ref error);
             if (ketqua == true)
             {
-                MessageBox.Show("Them thanh cong");
+                MessageBox.Show( cbxTrangThai.Text + " Thành Công");
             }
             else
             {
                 MessageBox.Show("Loi: " + error);
+                Console.WriteLine(error);
             }
-            LayDuLieuDSChamCong();
+            LayDuLieuDSChamCong(manhanvien);
         }
 
         private void dgDSChamCong_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -83,7 +85,7 @@ namespace SalaryManagement.QLChamCong
             {
                 DataGridViewRow selectedRow = dgDSChamCong.Rows[e.RowIndex];
                 //DSCCDuocChon.TrangThai = selectedRow.Cells["MaNhanVien"].Value.ToString();
-                LayDuLieuDSChamCong();
+                LayDuLieuDSChamCong(manhanvien);
             }
         }
     }

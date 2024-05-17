@@ -20,11 +20,11 @@ namespace SalaryManagement.Login
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string connString = "Data Source=.;Initial Catalog=QLTL;Integrated Security=True";
+            string connString = "Data Source=.;Initial Catalog=QuanLiTienLuong;Integrated Security=True";
 
             try
             {
-                string sql = @"SELECT TaiKhoan.MaTaiKhoan, TaiKhoan.TenDangNhap, PhongBan.TenPhongBan, ChucVu.TenChucVu, NhanVien.HoTen
+                string sql = @"SELECT TaiKhoan.MaTaiKhoan, TaiKhoan.TenDangNhap, PhongBan.TenPhongBan, ChucVu.TenChucVu, NhanVien.TenNhanVien
                                FROM TaiKhoan
                                JOIN NhanVien ON TaiKhoan.MaTaiKhoan = NhanVien.MaTaiKhoan
                                JOIN PhongBan ON NhanVien.MaPhongBan = PhongBan.MaPhongBan
@@ -48,10 +48,10 @@ namespace SalaryManagement.Login
                                 string tenDangNhap = reader.GetString(reader.GetOrdinal("TenDangNhap"));
                                 string tenPhongBan = reader.GetString(reader.GetOrdinal("TenPhongBan"));
                                 string tenChucVu = reader.GetString(reader.GetOrdinal("TenChucVu"));
-                                string tenDayDu = reader.GetString(reader.GetOrdinal("HoTen"));
+                                string tenDayDu = reader.GetString(reader.GetOrdinal("TenNhanVien"));
 
 
-                                ClsCHHeThong.ID = id;
+                                ClsCHHeThong.ID = id.ToString();
                                 ClsCHHeThong.TenDangNhap = tenDangNhap;
                                 ClsCHHeThong.PhongBan = tenPhongBan;
                                 ClsCHHeThong.ChucVu = tenChucVu;

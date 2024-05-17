@@ -18,9 +18,9 @@ namespace BusinessLogicLayer.Manager
         {
             process = new ChamCongReponsitories();
         }
-        public DataTable LayDuLieuDSChamCong(ref string error)
+        public DataTable LayDuLieuDSChamCong(string manhanvien, ref string error)
         {
-            return process.LayDuLieuDSChamCong(ref error);
+            return process.LayDuLieuDSChamCong(manhanvien, ref error);
         }
         public bool ChamCong(ChamCongEntity Entity, ref string error)
         {

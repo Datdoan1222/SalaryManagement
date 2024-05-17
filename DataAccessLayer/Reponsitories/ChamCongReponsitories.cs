@@ -12,15 +12,29 @@ namespace DataAccessLayer.Reponsitories
     public class ChamCongReponsitories
     {
         private Database DB = new Database();
-        public DataTable LayDuLieuDSChamCong(ref string error)
+        public DataTable LayDuLieuDSChamCong(string manhanvien, ref string error)
         {
+            
             try
             {
-                string sql = @"SELECT NhanVien.HoTen, ChamCong.MaNhanVien, ChamCong.TrangThai, ChamCong.ThoiGian
-                                FROM NhanVien
-                                INNER JOIN ChamCong ON NhanVien.MaNhanVien = ChamCong.MaNhanVien;";
+                string sql = @"SELECT 
+                                        n.MaNhanVien,
+                                        n.TenNhanVien,
+                                        CASE 
+                                            WHEN c.CheckIn IS NOT NULL AND c.CheckOut IS NULL THEN 'Check In'
+                                            WHEN c.CheckIn IS NOT NULL AND c.CheckOut IS NOT NULL THEN 'Check Out'
+                                            ELSE 'Check Out'
+                                        END AS [Trạng Thái],
+                                        COALESCE(c.CheckIn, c.CheckOut) AS [Thời Gian]
+                                    FROM 
+                                        ChamCong c
+                                    JOIN 
+                                        NhanVien n ON c.MaNhanVien = n.MaNhanVien
 
-                return DB.GetDataFromDB(sql, CommandType.Text, ref error);
+                                WHERE n.TenNhanVien like @MaNhanVien;
+                                ";
+
+                return DB.GetDataFromDB(sql, CommandType.Text, ref error,new SqlParameter("@MaNhanVien", manhanvien));
             }
             catch (Exception ex)
             {
@@ -30,14 +44,22 @@ namespace DataAccessLayer.Reponsitories
         }
         public bool ChamCong(ChamCongEntity Entity, ref string error)
         {
-
+            string sql = "";
             try
             {
-                string sql = " insert into ChamCong(MaNhanVien,TrangThai,ThoiGian) " +
-                             " values(@MaNhanVien,  @TrangThai, @ThoiGian)";
+                if(Entity.TrangThai == "Check In")
+                {
+                    sql = " insert into ChamCong(MaNhanVien,CheckIn) " +
+                             " values(@MaNhanVien,  @CheckIn)";
+                }else
+                {
+                    sql = " insert into ChamCong(MaNhanVien,CheckOut) " +
+                             " values(@MaNhanVien, @CheckOut)";
+                }
+                
                 var rs = DB.ProcessData(sql, CommandType.Text, ref error, new SqlParameter("@MaNhanVien", Entity.MaNhanVien),
-                                                       new SqlParameter("@TrangThai", Entity.TrangThai),
-                                                       new SqlParameter("@ThoiGian", Entity.ThoiGian));
+                                                       new SqlParameter("@CheckIn", Entity.CheckIn),
+                                                       new SqlParameter("@CheckOut", Entity.CheckOut));
                 return rs;
             }
             catch (Exception ex)
